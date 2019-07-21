@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+  <title>Train Scheduler</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+  <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+
+</head>
+
+<body>
+
+  <!-- Header -->
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">TRAIN TIME</h1>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <table class="table table-hover">
+    <thead class="thead-dark">
+      <th>Current Train Schedule</th>
+    </thead>
+  </table>
+
+  <table class="table table-hover">
+    <thead>
+
+      <tr>
+        <th scope="col">Train Name</th>
+        <th scope="col">Destination</th>
+        <th scope="col">Frequency</th>
+        <th scope="col">Next Arrival</th>
+        <th scope="col">Minutes Away</th>
+      </tr>
+
+    </thead>
+    <tbody class="trainData">
+     
+      <tr>
+        <td id="train-display"></td>
+        <td id="dest-display"></td>
+        <td id="freq-display"></td>
+        <td id="next-display"></td>
+      </tr>
+
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Form -->
+  <table class="table table-hover">
+    <thead class="thead-dark">
+      <th>Add Employee</th>
+    </thead>
+  </table>
+
+  <form>
+    <div class="form-group">
+      <label for="formGroupExampleInput">Train Name</label>
+      <input type="text" class="form-control" id="train-text">
+    </div>
+    <div class="form-group">
+      <label for="formGroupExampleInput2">Destination</label>
+      <input type="text" class="form-control" id="dest-text">
+    </div>
+    <div class="form-group">
+      <label for="formGroupExampleInput2">First Train Time (hh:mm - military time)</label>
+      <input type="text" class="form-control" id="firstTrain-text">
+    </div>
+    <div class="form-group">
+      <label for="formGroupExampleInput2">Frequency</label>
+      <input type="text" class="form-control" id="freq-text">
+    </div>
+    <div class="btn btn-dark" id="add-user" type="submit">Submit</div>
+  </form>
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="assets/javascript/app.js"></script>
+
+</html>
