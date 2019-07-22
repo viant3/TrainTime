@@ -7,11 +7,11 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
-  <title>Train Scheduler</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-  <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <title>Train Scheduler</title>
 
 </head>
 
@@ -56,10 +56,12 @@
     </tbody>
   </table>
 
+
+  <section class="mainBox">
   <!-- Form -->
   <table class="table table-hover">
     <thead class="thead-dark">
-      <th>Add Employee</th>
+      <th>Add A New Train</th>
     </thead>
   </table>
 
@@ -81,9 +83,12 @@
       <input type="text" class="form-control" id="freq-text">
     </div>
     <div class="btn btn-dark" id="add-user" type="submit">Submit</div>
+
+
+  </section>
   </form>
 </body>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="assets/javascript/app.js"></script>
 

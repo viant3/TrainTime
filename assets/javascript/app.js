@@ -27,7 +27,7 @@ $("#add-user").on("click", function (event) {
   destination = $("#dest-text").val().trim();
   firstTrain = $("#firstTrain-text").val().trim();
   frequency = $("#freq-text").val().trim();
-
+ 
 
   // Code for "Setting values in the database"
   var newTrain = {
@@ -35,6 +35,7 @@ $("#add-user").on("click", function (event) {
     destination: destination,
     firstTrain: firstTrain,
     frequency: frequency,
+    dateAdded: firebase.database.ServerValue.TIMESTAMP
   };
 
   database.ref().push(newTrain);
@@ -46,15 +47,24 @@ database.ref().on("child_added", function (snapshot) {
 
   var tr = $("<tr>");
 
-
-
+  
+        // Chang year so first train comes before now
+        var firstTrainNew = moment(snapshot.val().firstTrain, "hh:mm").subtract(1, "years");
+        // Difference between the current and firstTrain
+        var diffTime = moment().diff(moment(firstTrainNew), "minutes");
+        var remainder = diffTime % snapshot.val().frequency;
+        // Minutes until next train
+        var minAway = snapshot.val().frequency - remainder;
+        // Next train time
+        var nextTrain = moment().add(minAway, "minutes");
+        nextTrain = moment(nextTrain).format("hh:mm");
 
   // Change the HTML to reflect
   var tdtrainName = $("<td>").text(snapshot.val().trainName);
   var tddestination = $("<td>").text(snapshot.val().destination);
   var tdfrequency = $("<td>").text(snapshot.val().frequency);
-  var tdnextArrival = $("<td>").html("");
-  var tdminAway = $("<td>").html("");
+  var tdnextArrival = $("<td>").text(nextTrain);
+  var tdminAway = $("<td>").text(minAway);
 
 
   tr.append(tdtrainName).append(tddestination).append(tdfrequency).append(tdnextArrival).append(tdminAway);
