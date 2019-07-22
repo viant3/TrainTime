@@ -59,7 +59,7 @@ database.ref().on("child_added", function (snapshot) {
         var minAway = snapshot.val().frequency - remainder;
         // Next train time
         var nextTrain = moment().add(minAway, "minutes");
-        nextTrain = moment(nextTrain).format("hh:mm");
+        nextTrain = moment(nextTrain).format("HH:mm");
 
   // Change the HTML to reflect
   var tdtrainName = $("<td>").text(snapshot.val().trainName);
