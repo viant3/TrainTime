@@ -40,6 +40,8 @@ $("#add-user").on("click", function (event) {
 
   database.ref().push(newTrain);
 
+  $(".mainForm")[0].reset();
+
 });
 
 // Firebase watcher + initial loader HINT: .on("value")
