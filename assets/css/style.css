@@ -2,4 +2,9 @@
     max-width: 85%;
     margin: 0 auto;
     margin-bottom: 15%;
+    border-color: #696969;
+    border-style: inset;
+    border-width: 3px;
+    border-radius: 20px;
+    padding: 15px;
   }
