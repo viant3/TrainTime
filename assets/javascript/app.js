@@ -29,6 +29,10 @@ $("#add-user").on("click", function (event) {
   frequency = $("#freq-text").val().trim();
  
 
+  if (trainName === "" || destination === "" || firstTrain === "" || frequency === "") {
+    alert("All fields must be completed before submitting");
+  }
+else {
   // Code for "Setting values in the database"
   var newTrain = {
     trainName: trainName,
@@ -41,6 +45,7 @@ $("#add-user").on("click", function (event) {
   database.ref().push(newTrain);
 
   $(".mainForm")[0].reset();
+}
 
 });
 
