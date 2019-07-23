@@ -7,6 +7,7 @@ var firebaseConfig = {
   messagingSenderId: "250182964803",
   appId: "1:250182964803:web:4aecaa2d94805105"
 };
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
@@ -27,25 +28,27 @@ $("#add-user").on("click", function (event) {
   destination = $("#dest-text").val().trim();
   firstTrain = $("#firstTrain-text").val().trim();
   frequency = $("#freq-text").val().trim();
- 
 
-  if (trainName === "" || destination === "" || firstTrain === "" || frequency === "") {
+  if (isNaN(firstTrain) || isNaN(frequency)) {
+    alert("First train time and frequency must be numeric")
+  }
+  else if (trainName === "" || destination === "" || firstTrain === "" || frequency === "") {
     alert("All fields must be completed before submitting");
   }
-else {
-  // Code for "Setting values in the database"
-  var newTrain = {
-    trainName: trainName,
-    destination: destination,
-    firstTrain: firstTrain,
-    frequency: frequency,
-    dateAdded: firebase.database.ServerValue.TIMESTAMP
-  };
+  else {
+    // Code for "Setting values in the database"
+    var newTrain = {
+      trainName: trainName,
+      destination: destination,
+      firstTrain: firstTrain,
+      frequency: frequency,
+      dateAdded: firebase.database.ServerValue.TIMESTAMP
+    };
 
-  database.ref().push(newTrain);
+    database.ref().push(newTrain);
 
-  $(".mainForm")[0].reset();
-}
+    $(".mainForm")[0].reset();
+  }
 
 });
 
@@ -54,17 +57,17 @@ database.ref().on("child_added", function (snapshot) {
 
   var tr = $("<tr>");
 
-  
-        // Chang year so first train comes before now
-        var firstTrainNew = moment(snapshot.val().firstTrain, "HH:mm").subtract(1, "years");
-        // Difference between the current and firstTrain
-        var diffTime = moment().diff(moment(firstTrainNew), "minutes");
-        var remainder = diffTime % snapshot.val().frequency;
-        // Minutes until next train
-        var minAway = snapshot.val().frequency - remainder;
-        // Next train time
-        var nextTrain = moment().add(minAway, "minutes");
-        nextTrain = moment(nextTrain).format("HH:mm");
+
+  // Chang year so first train comes before now
+  var firstTrainNew = moment(snapshot.val().firstTrain, "HH:mm").subtract(1, "years");
+  // Difference between the current and firstTrain
+  var diffTime = moment().diff(moment(firstTrainNew), "minutes");
+  var remainder = diffTime % snapshot.val().frequency;
+  // Minutes until next train
+  var minAway = snapshot.val().frequency - remainder;
+  // Next train time
+  var nextTrain = moment().add(minAway, "minutes");
+  nextTrain = moment(nextTrain).format("HH:mm");
 
   // Change the HTML to reflect
   var tdtrainName = $("<td>").text(snapshot.val().trainName);
